@@ -6,7 +6,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-book-reader"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Jenius Education</div>
+                <div class="sidebar-brand-text mx-3">Genius Education</div>
             </a>
 
             <!-- Divider -->
