@@ -14,8 +14,72 @@
 		<?php echo form_open_multipart('user/tambah_artikel'); ?>
 
 		<div class="form-group">
-			<label for="name">Name*</label>
-			<input class="form-control" type="text" id="name" name="name" placeholder="Product name" />
+			<label for="name">NIS*</label>
+			<input class="form-control" type="text" id="name" name="name" placeholder="Nomer Induk Siswa" />
+			<div class="invalid-feedback">
+				<?php echo form_error('name') ?>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="name">Nama Lengkap*</label>
+			<input class="form-control" type="text" id="name" name="name" placeholder="Nama lengkap siswa" />
+			<div class="invalid-feedback">
+				<?php echo form_error('name') ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="name">Jenjang*</label>
+			<input class="form-control" type="text" id="name" name="name" placeholder="Tingkat satuan pendidikan" />
+			<div class="invalid-feedback">
+				<?php echo form_error('name') ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="name">Asal Sekolah*</label>
+			<input class="form-control" type="text" id="name" name="name" placeholder="Nama asal sekolah" />
+			<div class="invalid-feedback">
+				<?php echo form_error('name') ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="name">Alamat*</label>
+			<input class="form-control" type="text" id="name" name="name" placeholder="Alamat rumah" />
+			<div class="invalid-feedback">
+				<?php echo form_error('name') ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="name">No. Hp*</label>
+			<input class="form-control" type="text" id="name" name="name" placeholder="Nomer yang bisa dihubungi" />
+			<div class="invalid-feedback">
+				<?php echo form_error('name') ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="name">Nama Ortu*</label>
+			<input class="form-control" type="text" id="name" name="name" placeholder="Nama orangtua" />
+			<div class="invalid-feedback">
+				<?php echo form_error('name') ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="name">Pekerjaan Ortu*</label>
+			<input class="form-control" type="text" id="name" name="name" placeholder="Pekerjaan orangtua" />
+			<div class="invalid-feedback">
+				<?php echo form_error('name') ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="name">Total Bayar*</label>
+			<input class="form-control" type="text" id="name" name="name" placeholder="Nominal bayar" />
 			<div class="invalid-feedback">
 				<?php echo form_error('name') ?>
 			</div>
