@@ -136,10 +136,17 @@ class User extends CI_Controller
     {
         $data = [
 
-            'product_id' => $this->input->post('product_id'),
-            'name' => $this->input->post('name'),
+            'no' => $this->input->post('no'),
+            'no_induk' => $this->input->post('no_induk'),
+            'nama_siswa' => $this->input->post('nama_siswa'),
+            'jenjang' => $this->input->post('jenjang'),
+            'sekolah' => $this->input->post('sekolah'),
+            'alamat' => $this->input->post('alamat'),
+            'no_hp' => $this->input->post('no_hp'),
+            'nama_ortu' => $this->input->post('nama_ortu'),
+            'pekerjaan_ortu' => $this->input->post('pekerjaan_ortu'),
+            'total_bayar' => $this->input->post('total_bayar'),
             'image' => $this->_uploadImage(),
-            'description' => $this->input->post('description'),
         ];
 
         $this->Product_model->tambah_data($data);
@@ -279,8 +286,6 @@ class User extends CI_Controller
         $this->load->view('user/new_form_anggota', $data);
         $this->load->view('templates/footer');
     }
-
-
 
     public function inputan()
     {

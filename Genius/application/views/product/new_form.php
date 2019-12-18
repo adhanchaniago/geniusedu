@@ -14,82 +14,76 @@
 		<?php echo form_open_multipart('user/tambah_artikel'); ?>
 
 		<div class="form-group">
-			<label for="name">NIS*</label>
-			<input class="form-control" type="text" id="name" name="name" placeholder="Nomer Induk Siswa" />
+			<label for="no_induk">NIS*</label>
+			<input class="form-control" type="text" id="no_induk" name="no_induk" placeholder="Nomer Induk Siswa" onkeypress="return hanyaAngka(event)"/>
 			<div class="invalid-feedback">
-				<?php echo form_error('name') ?>
+				<?php echo form_error('no_induk') ?>
 			</div>
 		</div>
 		
 		<div class="form-group">
-			<label for="name">Nama Lengkap*</label>
-			<input class="form-control" type="text" id="name" name="name" placeholder="Nama lengkap siswa" />
+			<label for="nama_siswa">Nama Lengkap*</label>
+			<input class="form-control" type="text" id="nama_siswa" name="nama_siswa" placeholder="Nama lengkap siswa" />
 			<div class="invalid-feedback">
-				<?php echo form_error('name') ?>
+				<?php echo form_error('nama_siswa') ?>
+			</div>
+		</div>
+
+		<div class='form-group'>
+<label>Jenjang</label>
+<select class='form-control' id='jenjang' name='jenjang'>
+<option value='0'>--pilih--</option>
+<option value='1'>SD</option>
+<option value='2'>SMP</option>
+<option value='3'>SMA</option>
+</select>
+</div>
+
+		<div class="form-group">
+			<label for="sekolah">Asal Sekolah*</label>
+			<input class="form-control" type="text" id="sekolah" name="sekolah" placeholder="Nama asal sekolah" />
+			<div class="invalid-feedback">
+				<?php echo form_error('sekolah') ?>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label for="name">Jenjang*</label>
-			<input class="form-control" type="text" id="name" name="name" placeholder="Tingkat satuan pendidikan" />
+			<label for="alamat">Alamat*</label>
+			<textarea class="form-control" id="alamat" name="alamat" placeholder="Alamat Rumah"></textarea>
 			<div class="invalid-feedback">
-				<?php echo form_error('name') ?>
+				<?php echo form_error('alamat') ?>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label for="name">Asal Sekolah*</label>
-			<input class="form-control" type="text" id="name" name="name" placeholder="Nama asal sekolah" />
+			<label for="no_hp">No. Hp*</label>
+			<input class="form-control" type="text" id="no_hp" name="no_hp" placeholder="Nomer yang bisa dihubungi" onkeypress="return hanyaAngka(event)"/>
 			<div class="invalid-feedback">
-				<?php echo form_error('name') ?>
+				<?php echo form_error('no_hp') ?>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label for="name">Alamat*</label>
-			<input class="form-control" type="text" id="name" name="name" placeholder="Alamat rumah" />
+			<label for="nama_ortu">Nama Ortu*</label>
+			<input class="form-control" type="text" id="nama_ortu" name="nama_ortu" placeholder="Nama orangtua" />
 			<div class="invalid-feedback">
-				<?php echo form_error('name') ?>
+				<?php echo form_error('nama_ortu') ?>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label for="name">No. Hp*</label>
-			<input class="form-control" type="text" id="name" name="name" placeholder="Nomer yang bisa dihubungi" />
+			<label for="pekerjaan_ortu">Pekerjaan Ortu*</label>
+			<input class="form-control" type="text" id="pekerjaan_ortu" name="pekerjaan_ortu" placeholder="Pekerjaan orangtua" />
 			<div class="invalid-feedback">
-				<?php echo form_error('name') ?>
+				<?php echo form_error('pekerjaan_ortu') ?>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label for="name">Nama Ortu*</label>
-			<input class="form-control" type="text" id="name" name="name" placeholder="Nama orangtua" />
+			<label for="total_bayar">Total Bayar*</label>
+			<input class="form-control" type="text" id="total_bayar" name="total_bayar" placeholder="Nominal bayar" onkeypress="return hanyaAngka(event)"/>
 			<div class="invalid-feedback">
-				<?php echo form_error('name') ?>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label for="name">Pekerjaan Ortu*</label>
-			<input class="form-control" type="text" id="name" name="name" placeholder="Pekerjaan orangtua" />
-			<div class="invalid-feedback">
-				<?php echo form_error('name') ?>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label for="name">Total Bayar*</label>
-			<input class="form-control" type="text" id="name" name="name" placeholder="Nominal bayar" />
-			<div class="invalid-feedback">
-				<?php echo form_error('name') ?>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label for="name">Description*</label>
-			<textarea class="form-control" id="description" name="description" placeholder="Product description..."></textarea>
-			<div class="invalid-feedback">
-				<?php echo form_error('description') ?>
+				<?php echo form_error('total_bayar') ?>
 			</div>
 		</div>
 
@@ -101,6 +95,15 @@
 			</div>
 		</div>
 
+<script>
+		function hanyaAngka(evt) {
+		  var charCode = (evt.which) ? evt.which : event.keyCode
+		   if (charCode > 31 && (charCode < 48 || charCode > 57))
+ 
+		    return false;
+		  return true;
+		}
+	</script>
 
 
 		<button class="btn btn-success" type="submit">SAVE</button>

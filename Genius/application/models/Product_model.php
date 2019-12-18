@@ -2,25 +2,33 @@
 
 class Product_model extends CI_Model
 {
-    private $_table = "products";
+    private $_table = "siswa";
 
-    public $product_id;
-    public $name;
+    public $no;
+    public $no_induk;
+    public $nama_siswa;
+    public $jenjang;
+    public $sekolah;
+    public $alamat;
+    public $no_hp;
+    public $nama_ortu;
+    public $pekerjaan_ortu;
+    public $total_bayar;
     public $image = "default.jpg";
-    public $description;
+
 
     public function rules()
     {
         return [
             [
-                'field' => 'name',
-                'label' => 'Name',
+                'field' => 'no_induk',
+                'label' => 'No_induk',
                 'rules' => 'required'
             ],
 
             [
-                'field' => 'description',
-                'label' => 'Description',
+                'field' => 'nama_siswa',
+                'label' => 'Nama_siswa',
                 'rules' => 'required'
             ]
         ];
@@ -33,42 +41,49 @@ class Product_model extends CI_Model
 
     public function getById($id)
     {
-        return $this->db->get_where($this->_table, ["product_id" => $id])->row();
+        return $this->db->get_where($this->_table, ["no" => $id])->row();
     }
 
     public function save()
     {
         $post = $this->input->post();
-        $this->product_id = uniqid();
-        $this->name = $post["name"];
+        $this->no = uniqid();
+        $this->no_induk = $post["no_induk"];
+        $this->nama_siswa = $post["nama_siswa"];
+        $this->jenjang = $post["jenjang"];
+        $this->sekolah = $post["sekolah"];
+        $this->alamat = $post["alamat"];
+        $this->no_hp = $post["no_hp"];
+        $this->nama_ortu = $post["nama_ortu"];
+        $this->pekerjaan_ortu = $post["pekerjaan_ortu"];
         $this->image = $this->_uploadImage();
-        $this->description = $post["description"];
+        $this->total_bayar = $post["total_bayar"];
         $this->db->insert($this->_table, $this);
     }
 
     public function update()
     {
         $post = $this->input->post();
-        $this->product_id = $post["id"];
-        $this->name = $post["name"];
+        $this->no = $post["id"];
+        $this->no_induk = $post["no_induk"];
         if (!empty($_FILES["image"]["name"])) {
             $this->image = $this->_uploadImage();
         } else {
             $this->image = $post["old_image"];
         }
-        $this->description = $post["description"];
+        $this->total_bayar = $post["total_bayar"];
     }
 
-    function delete($product_id)
+    function delete($no)
     {
-        $this->_deleteImage($product_id);
-        $this->db->where('product_id', $product_id);
-        $this->db->delete('products');
+        $this->_deleteImage($no);
+        $this->db->where('no', $no);
+        $this->db->delete('siswa');
     }
 
-    private function _deleteImage($product_id)
+    private function _deleteImage($no)
     {
-        $list = $this->getById($product_id);
+        $list = $this->getById($no);
         if ($list->image != "default.jpg") {
             $filename = explode(".", $list->image)[0];
             return array_map('unlink', glob(FCPATH . "./assets/img/profile/$filename.*"));
@@ -78,17 +93,17 @@ class Product_model extends CI_Model
 
     function tambah_data($data)
     {
-        $this->db->insert('products', $data);
+        $this->db->insert('siswa', $data);
     }
 
     function list()
     {
-        return  $this->db->get('products');
+        return  $this->db->get('siswa');
     }
 
-    function edit_artikel($data, $product_id)
+    function edit_artikel($data, $no)
     {
-        $this->db->where('product_id', $product_id);
-        $this->db->update('products', $data);
+        $this->db->where('no', $no);
+        $this->db->update('siswa', $data);
     }
 }

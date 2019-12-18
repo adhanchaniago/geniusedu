@@ -17,19 +17,19 @@
 				<tbody>
 					<?php foreach ($list as $tr) : ?>
 						<tr>
-							<?php $tr->product_id ?>
+							<?php $tr->no ?>
 							<td width="150">
-								<?php echo $tr->name ?>
+								<?php echo $tr->nama_siswa ?>
 							</td>
 							<td>
 								<img src="<?php echo base_url('assets/img/profile/' . $tr->image) ?>" width="64" />
 							</td>
 							<td class="small">
-								<?php echo substr($tr->description, 0, 120) ?>...</td>
+								<?php echo substr($tr->alamat, 0, 120) ?>...</td>
 
 							<td width="250">
-								<a href="<?php echo site_url('user/edit_artikel/' . $tr->product_id); ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
-								<a href="<?php echo site_url('user/delete/' . $tr->product_id); ?>" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+								<a href="<?php echo site_url('user/edit_artikel/' . $tr->no); ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
+								<a href="<?php echo site_url('user/delete/' . $tr->no); ?>" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
 							</td>
 						</tr>
 					<?php endforeach; ?>
