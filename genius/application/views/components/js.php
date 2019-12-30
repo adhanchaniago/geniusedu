@@ -1,0 +1,11 @@
+<script src="<?php echo base_url('assets/jquery/jquery.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/metismenu/metismenu.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/jquery-slimscroll/jquery.slimscroll.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/waves/waves.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/datatables/datatables.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/datepicker/locales/bootstrap-datepicker.id.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/jquery-mask/jquery.mask.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/jquery-inputmask/jquery.inputmask.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/app.js') ?>"></script>
