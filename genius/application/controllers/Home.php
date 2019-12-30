@@ -803,6 +803,12 @@ class Home extends CI_Controller {
 		    							   ->result();
 
 			$this->load->view('laporan-cetak-persiswa',$data);
+		}elseif ($sort == 'paket') {
+
+			$this->db->order_by("paketbimbel_nama", "ASC");
+	    	$data['paketbimbel'] = $this->db->get('paketbimbel')->result();
+
+			$this->load->view('laporan-cetak-perpaket',$data);
 		}
 		
     }

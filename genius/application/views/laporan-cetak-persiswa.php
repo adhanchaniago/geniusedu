@@ -8,13 +8,15 @@
         .table th {
            text-align: center;   
         }
+
+        /*@media print{@page {size: landscape}}*/
     </style>
 </head>
 
 <body>
     
     <div class="container mt-5">
-        <div class="font-weight-bold mb-4 h5"><center>LAPORAN PER SISWA</center></div>
+        <div class="font-weight-bold mb-4 h5"><center>LAPORAN SISWA</center></div>
 
         <table class="table table-bordered">
             <thead>
