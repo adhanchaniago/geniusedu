@@ -49,7 +49,7 @@
 
                 <li class="menu-title">LAPORAN</li>
                 <li>
-                    <a href="<?php echo base_url('beranda') ?>" class="waves-effect">
+                    <a href="<?php echo base_url('laporan') ?>" class="waves-effect">
                         <i class="fas fa-scroll"></i>
                         <span>Laporan</span>
                     </a>

@@ -184,7 +184,7 @@
                                     <tbody>
                                         <?php foreach ($pembayaran as $bayar) { ?>
                                         <tr>
-                                            <td><?php echo $bayar->pembayaran_tanggalbayar ?></td>
+                                            <td><?php echo $controller->tgl_indo($bayar->pembayaran_tanggalbayar) ?></td>
                                             <td>Rp. <span class="nominal"><?php echo $bayar->pembayaran_nominalbayar ?></span></td>
                                             <td><?php echo $bayar->pembayaran_kwitansi ?></td>
                                             <td>
@@ -218,7 +218,10 @@
     <script type="text/javascript">
 
         $( document ).ready(function() {
-            $('#table').DataTable();
+            $('#table').DataTable( {
+                "order": []
+            } );
+
             $('.tanggal').datepicker({
                 format: "yyyy-mm-dd",
                 todayBtn: "linked",

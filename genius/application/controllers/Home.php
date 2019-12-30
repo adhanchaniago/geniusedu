@@ -161,6 +161,7 @@ class Home extends CI_Controller {
 
     public function user()
 	{
+		$this->db->order_by("user_nama", "ASC");
         $data['user'] = $this->db->get('user')->result();
 
     	$this->load->view('user',$data);
@@ -248,6 +249,7 @@ class Home extends CI_Controller {
 
     public function paketbimbel()
 	{
+		$this->db->order_by("paketbimbel_nama", "ASC");
         $data['paketbimbel'] = $this->db->get('paketbimbel')->result();
 
     	$this->load->view('paketbimbel',$data);
@@ -306,6 +308,7 @@ class Home extends CI_Controller {
 
 	public function pesertadidik()
 	{
+		$this->db->order_by("pesertadidik_nama", "ASC");
         $data['pesertadidik'] = $this->db->select('*')
 	    							   ->from('pesertadidik')
 	    							   ->join('paketbimbel', 'pesertadidik.pesertadidik_paketbimbel_id = paketbimbel.paketbimbel_id','left')
@@ -317,6 +320,7 @@ class Home extends CI_Controller {
 
     public function pesertadidik_tambah()
 	{
+		$this->db->order_by("paketbimbel_nama", "ASC");
 		$data['paketbimbel'] = $this->db->get('paketbimbel')->result();
 
         $this->load->view('pesertadidik-tambah',$data);
@@ -365,6 +369,7 @@ class Home extends CI_Controller {
     	$where = array('pesertadidik_id' => $id);
     	$data['pesertadidik'] = $this->db->get_where('pesertadidik',$where)->result();
 
+    	$this->db->order_by("paketbimbel_nama", "ASC");
     	$data['paketbimbel'] = $this->db->get('paketbimbel')->result();
 
     	$this->load->view('pesertadidik-edit',$data);
@@ -421,6 +426,7 @@ class Home extends CI_Controller {
 
 	public function guru()
 	{
+		$this->db->order_by("guru_nama", "ASC");
         $data['guru'] = $this->db->get('guru')->result();
 
     	$this->load->view('guru',$data);
@@ -488,6 +494,7 @@ class Home extends CI_Controller {
 
 	public function pembayaran()
     {
+    	$this->db->order_by("pesertadidik_nama", "ASC");
     	$data['pesertadidik'] = $this->db->select('*')
 	    							   ->from('pesertadidik')
 	    							   ->join('paketbimbel', 'pesertadidik.pesertadidik_paketbimbel_id = paketbimbel.paketbimbel_id','left')
@@ -525,7 +532,10 @@ class Home extends CI_Controller {
 	    	$data['totalbayar'] = $p->paketbimbel_nominal - $data['potongan'];
 	    }
 
+	    $data['controller'] = $this;
+
 	    $wherebayar = array('pembayaran_pesertadidik_id' => $id);
+	    $this->db->order_by("pembayaran_tanggalbayar", "DESC");
     	$data['pembayaran'] = $this->db->get_where('pembayaran',$wherebayar)->result();
 
     	$data['terbayar'] = $this->db->select_sum('pembayaran_nominalbayar')->get_where('pembayaran',$wherebayar)->result();
@@ -771,6 +781,31 @@ class Home extends CI_Controller {
 		$this->data->hapus($where,'pengeluaran');
 		redirect(base_url('pengeluaran'));
 	}
+
+	public function laporan()
+	{
+		$this->load->view('laporan');
+    }
+
+    public function laporan_cetak()
+	{
+		$sort = $this->input->post('sort');
+		$tanggalawal = $this->input->post('tanggalawal');
+		$tanggalakhir = $this->input->post('tanggalakhir');
+
+		if ($sort == 'siswa') {
+
+			$this->db->order_by("pesertadidik_nama", "ASC");
+	    	$data['pesertadidik'] = $this->db->select('*')
+		    							   ->from('pesertadidik')
+		    							   ->join('paketbimbel', 'pesertadidik.pesertadidik_paketbimbel_id = paketbimbel.paketbimbel_id','left')
+		    							   ->get()
+		    							   ->result();
+
+			$this->load->view('laporan-cetak-persiswa',$data);
+		}
+		
+    }
 
 }
 

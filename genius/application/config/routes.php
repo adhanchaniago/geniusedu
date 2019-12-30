@@ -113,3 +113,6 @@ $route['pengeluaran/setting/tambah/aksi'] = 'home/pengeluaran_setting_tambah_aks
 $route['pengeluaran/setting/edit/(:num)'] = 'home/pengeluaran_setting_edit/$1';
 $route['pengeluaran/setting/edit/aksi/(:num)'] = 'home/pengeluaran_setting_edit_aksi/$1';
 $route['pengeluaran/setting/hapus/(:num)'] = 'home/pengeluaran_setting_hapus/$1';
+
+$route['laporan'] = 'home/laporan';
+$route['laporan/cetak'] = 'home/laporan_cetak';

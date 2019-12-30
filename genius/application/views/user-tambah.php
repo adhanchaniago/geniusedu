@@ -47,7 +47,6 @@
                             <option value="">Pilih Level</option>
                             <option value="1">Administrator</option>
                             <option value="2">Staff</option>
-                            <option value="3">Siswa</option>
                         </select>
 
                         <a class="btn btn-warning" href="<?php echo base_url('user') ?>">Kembali</a>

@@ -7,6 +7,10 @@
         table tr td {
             padding: 5px 0px;
         }
+
+        .table th {
+           text-align: center;   
+        }
     </style>
 </head>
 

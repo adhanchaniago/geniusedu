@@ -46,7 +46,6 @@
                         <select class="form-control mb-3" name="level" required>
                             <option value="1" <?php if($u->user_level=='1'){echo "selected";} ?>>Administrator</option>
                             <option value="2" <?php if($u->user_level=='2'){echo "selected";} ?>>Staff</option>
-                            <option value="3" <?php if($u->user_level=='3'){echo "selected";} ?>>Siswa</option>
                         </select>
 
                         <a class="btn btn-warning" href="<?php echo base_url('user') ?>">Kembali</a>

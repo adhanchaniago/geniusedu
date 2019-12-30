@@ -26,50 +26,38 @@
                     <div class="page-title-box">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h4 class="page-title">DAFTAR USER</h4>
+                                <h4 class="page-title">LAPORAN</h4>
                             </div>
                         </div>
                     </div>
                     <!-- end row -->
-
-                    <a class="btn btn-primary mb-2" href="<?php echo base_url('user/tambah') ?>">Tambah</a>
-
+                    <form action="<?php echo base_url('laporan/cetak') ?>" target="_blank" method="post">
                     <table class="table table-striped table-bordered table-responsive-md">
                         <thead>
                             <tr>
-                                <th>Nama User</th>
-                                <th>Username</th>
-                                <th>Level</th>
+                                <th>Sort</th>
+                                <th>Rentang Awal</th>
+                                <th>Rentang Akhir</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <?php 
-                            foreach($user as $u){
-                            ?>
                             <tr>
-                                <td><?php echo $u->user_nama ?></td>
-                                <td><?php echo $u->user_username ?></td>
                                 <td>
-                                    <?php
-                                    $level = $u->user_level;
-                                    if ($level == 1) {
-                                        echo "Administrator";
-                                    }elseif ($level == 2) {
-                                        echo "Staff";
-                                    }
-                                    ?>
+                                    <select class="form-control" name="sort">
+                                        <option value="semua">Semua</option>
+                                        <option value="siswa">Siswa</option>
+                                        <option value="paket">Paket</option>
+                                    </select>
                                 </td>
-                                <td>
-                                    <a class="btn btn-warning" href="<?php echo base_url('user/edit/').$u->user_id ?>">Edit</a>
-                                    <a class="btn btn-success" href="<?php echo base_url('user/ubahpassword/').$u->user_id ?>">Ubah Password</a>
-                                    <a class="btn btn-danger" href="<?php echo base_url('user/hapus/').$u->user_id ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
-                                </td>
+                                <td><input class="form-control tanggal" type="text" name="tanggalawal"></td>
+                                <td><input class="form-control tanggal" type="text" name="tanggalakhir"></td>
+                                <td><input class="btn btn-primary" type="submit" value="Cetak"></td>
                             </tr>
-                            <?php } ?>
                         </tbody>
                     </table>
+                    </form>
 
                 </div>
                 <!-- container-fluid -->
@@ -90,9 +78,14 @@
     <script type="text/javascript">
 
         $( document ).ready(function() {
-            $('.table').DataTable( {
-                "order": []
-            } );
+            $('.tanggal').datepicker({
+                format: "yyyy-mm-dd",
+                todayBtn: "linked",
+                clearBtn: true,
+                language: "id",
+                autoclose: true,
+                todayHighlight: true
+            });
         });
         
     </script>
