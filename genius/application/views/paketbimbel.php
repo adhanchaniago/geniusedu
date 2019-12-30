@@ -78,7 +78,9 @@
     <script type="text/javascript">
 
         $( document ).ready(function() {
-            $('.table').DataTable();
+            $('.table').DataTable( {
+                "order": []
+            } );
             $('.nominal').mask('000.000.000.000.000', {reverse: true});
         });
         

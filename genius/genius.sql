@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Des 2019 pada 19.26
+-- Waktu pembuatan: 30 Des 2019 pada 12.14
 -- Versi server: 10.4.8-MariaDB
 -- Versi PHP: 7.3.10
 
@@ -42,6 +42,26 @@ CREATE TABLE `guru` (
 
 INSERT INTO `guru` (`guru_id`, `guru_nama`, `guru_jk`, `guru_alamat`, `guru_telepon`) VALUES
 (1, 'NURIS SETIA BUDI', 'l', 'Tegaldlimo - Banyuwangi', '085204569506');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kategoripengeluaran`
+--
+
+CREATE TABLE `kategoripengeluaran` (
+  `kategoripengeluaran_id` int(6) NOT NULL,
+  `kategoripengeluaran_nama` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kategoripengeluaran`
+--
+
+INSERT INTO `kategoripengeluaran` (`kategoripengeluaran_id`, `kategoripengeluaran_nama`) VALUES
+(1, 'ATK'),
+(3, 'KONSUMSI'),
+(5, 'GAJI');
 
 -- --------------------------------------------------------
 
@@ -103,8 +123,31 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`pembayaran_id`, `pembayaran_pesertadidik_id`, `pembayaran_tanggalbayar`, `pembayaran_nominalbayar`, `pembayaran_kwitansi`) VALUES
-(5, 1, '2019-12-30', '800000', '001'),
-(8, 2, '2019-12-31', '1000000', '004');
+(5, 1, '2019-12-30', '500000', '001'),
+(17, 1, '2020-01-02', '310000', '001');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pengeluaran`
+--
+
+CREATE TABLE `pengeluaran` (
+  `pengeluaran_id` int(6) NOT NULL,
+  `pengeluaran_tanggal` date NOT NULL,
+  `pengeluaran_kategoripengeluaran_id` int(6) NOT NULL,
+  `pengeluaran_nominal` varchar(30) NOT NULL,
+  `pengeluaran_keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `pengeluaran`
+--
+
+INSERT INTO `pengeluaran` (`pengeluaran_id`, `pengeluaran_tanggal`, `pengeluaran_kategoripengeluaran_id`, `pengeluaran_nominal`, `pengeluaran_keterangan`) VALUES
+(2, '2019-12-31', 3, '700000', 'Pengeluaran Konsumsi'),
+(3, '2019-12-29', 5, '1500000', 'Pengeluaran Gaji Guru'),
+(4, '2020-01-02', 1, '90000', 'Pembelian perlengkapan ATK');
 
 -- --------------------------------------------------------
 
@@ -139,8 +182,8 @@ CREATE TABLE `pesertadidik` (
 --
 
 INSERT INTO `pesertadidik` (`pesertadidik_id`, `pesertadidik_nama`, `pesertadidik_noinduk`, `pesertadidik_jk`, `pesertadidik_tempatlahir`, `pesertadidik_tanggallahir`, `pesertadidik_agama`, `pesertadidik_alamat`, `pesertadidik_telepon`, `pesertadidik_ayah`, `pesertadidik_ibu`, `pesertadidik_pekerjaanayah`, `pesertadidik_pekerjaanibu`, `pesertadidik_teleponortu`, `pesertadidik_paketbimbel_id`, `pesertadidik_diskonpersen`, `pesertadidik_diskonnominal`, `pesertadidik_keterangandiskon`, `pesertadidik_batasbayar`) VALUES
-(1, 'NURIS SETIA BUDI', '0912039120', 'l', 'Banyuwangi', '2019-12-03', 'Islam', 'Tegaldlimo-banyuwangi', '085204569506', 'Anton', 'Nur', 'wiraswasta', 'ibu rumah tanggal', '0852045695062', 4, '', '', '', '2019-12-31'),
-(2, 'ANDI SETIAWAN', '00023', 'l', 'BANYUWANGI', '2019-12-10', 'Islam', 'TEGALDLIMO', '', 'PAIJO', 'PAINEM', '', '', '', 1, '', '', '', NULL);
+(1, 'NURIS SETIA BUDI', '0912039120', 'l', 'Banyuwangi', '2019-12-03', 'Islam', 'Tegaldlimo-banyuwangi', '085204569506', 'Anton', 'Nur', 'wiraswasta', 'ibu rumah tanggal', '0852045695062', 4, '10', '', '', '2020-01-04'),
+(2, 'ANDI SETIAWAN', '00023', 'l', 'BANYUWANGI', '2019-12-10', 'Islam', 'TEGALDLIMO', '', 'PAIJO', 'PAINEM', '', '', '', 1, '', '', '', '2019-12-30');
 
 -- --------------------------------------------------------
 
@@ -175,6 +218,12 @@ ALTER TABLE `guru`
   ADD PRIMARY KEY (`guru_id`);
 
 --
+-- Indeks untuk tabel `kategoripengeluaran`
+--
+ALTER TABLE `kategoripengeluaran`
+  ADD PRIMARY KEY (`kategoripengeluaran_id`);
+
+--
 -- Indeks untuk tabel `master`
 --
 ALTER TABLE `master`
@@ -191,6 +240,12 @@ ALTER TABLE `paketbimbel`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`pembayaran_id`);
+
+--
+-- Indeks untuk tabel `pengeluaran`
+--
+ALTER TABLE `pengeluaran`
+  ADD PRIMARY KEY (`pengeluaran_id`);
 
 --
 -- Indeks untuk tabel `pesertadidik`
@@ -215,6 +270,12 @@ ALTER TABLE `guru`
   MODIFY `guru_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT untuk tabel `kategoripengeluaran`
+--
+ALTER TABLE `kategoripengeluaran`
+  MODIFY `kategoripengeluaran_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT untuk tabel `master`
 --
 ALTER TABLE `master`
@@ -230,7 +291,13 @@ ALTER TABLE `paketbimbel`
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `pembayaran_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `pembayaran_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT untuk tabel `pengeluaran`
+--
+ALTER TABLE `pengeluaran`
+  MODIFY `pengeluaran_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `pesertadidik`

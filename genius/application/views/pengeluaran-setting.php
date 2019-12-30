@@ -26,43 +26,30 @@
                     <div class="page-title-box">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h4 class="page-title">DAFTAR GURU</h4>
+                                <h4 class="page-title">PENGATURAN PENGELUARAN</h4>
                             </div>
                         </div>
                     </div>
                     <!-- end row -->
 
-                    <a class="btn btn-primary mb-2" href="<?php echo base_url('guru/tambah') ?>">Tambah</a>
+                    <a class="btn btn-warning mb-2" href="<?php echo base_url('pengeluaran') ?>">Kembali</a>
+                    <a class="btn btn-primary mb-2" href="<?php echo base_url('pengeluaran/setting/tambah') ?>">Tambah</a>
 
                     <table class="table table-striped table-bordered table-responsive-md">
                         <thead>
                             <tr>
-                                <th>Nama Lengkap</th>
-                                <th>L/P</th>
-                                <th>Alamat Lengkap</th>
-                                <th>No. Telepon</th>
+                                <th>Kategori Pengeluaran</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <?php foreach ($guru as $g) { ?>
+                            <?php foreach ($kategori as $k) { ?>
                             <tr>
-                                <td><?php echo $g->guru_nama ?></td>
+                                <td><?php echo $k->kategoripengeluaran_nama ?></td>
                                 <td>
-                                    <?php
-                                    if ($g->guru_jk == "l") {
-                                        echo "Laki-laki";
-                                    }elseif ($g->guru_jk == "p") {
-                                        echo "Perempuan";
-                                    }
-                                    ?>
-                                </td>
-                                <td><?php echo $g->guru_alamat ?></td>
-                                <td><?php echo $g->guru_telepon ?></td>
-                                <td>
-                                    <a class="btn btn-warning" href="<?php echo base_url('guru/edit/').$g->guru_id ?>">Edit</a>
-                                    <a class="btn btn-danger" href="<?php echo base_url('guru/hapus/').$g->guru_id ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+                                    <a class="btn btn-warning" href="<?php echo base_url('pengeluaran/setting/edit/').$k->kategoripengeluaran_id ?>">Edit</a>
+                                    <a class="btn btn-danger" href="<?php echo base_url('pengeluaran/setting/hapus/').$k->kategoripengeluaran_id ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
                                 </td>
                             </tr>
                             <?php } ?>

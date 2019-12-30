@@ -100,3 +100,16 @@ $route['pembayaran/bayar/simpan/(:num)'] = 'home/pembayaran_bayar_simpan/$1';
 $route['pembayaran/bayar/aksi/(:num)'] = 'home/pembayaran_bayar_aksi/$1';
 $route['pembayaran/bayar/hapus/(:num)'] = 'home/pembayaran_bayar_hapus/$1';
 $route['pembayaran/bayar/cetak/(:num)'] = 'home/pembayaran_bayar_cetak/$1';
+
+$route['pengeluaran'] = 'home/pengeluaran';
+$route['pengeluaran/tambah'] = 'home/pengeluaran_tambah';
+$route['pengeluaran/tambah/aksi'] = 'home/pengeluaran_tambah_aksi';
+$route['pengeluaran/hapus/(:num)'] = 'home/pengeluaran_hapus/$1';
+$route['pengeluaran/edit/(:num)'] = 'home/pengeluaran_edit/$1';
+$route['pengeluaran/edit/aksi/(:num)'] = 'home/pengeluaran_edit_aksi/$1';
+$route['pengeluaran/setting'] = 'home/pengeluaran_setting';
+$route['pengeluaran/setting/tambah'] = 'home/pengeluaran_setting_tambah';
+$route['pengeluaran/setting/tambah/aksi'] = 'home/pengeluaran_setting_tambah_aksi';
+$route['pengeluaran/setting/edit/(:num)'] = 'home/pengeluaran_setting_edit/$1';
+$route['pengeluaran/setting/edit/aksi/(:num)'] = 'home/pengeluaran_setting_edit_aksi/$1';
+$route['pengeluaran/setting/hapus/(:num)'] = 'home/pengeluaran_setting_hapus/$1';

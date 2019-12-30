@@ -26,43 +26,36 @@
                     <div class="page-title-box">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h4 class="page-title">DAFTAR GURU</h4>
+                                <h4 class="page-title">DAFTAR PENGELUARAN</h4>
                             </div>
                         </div>
                     </div>
                     <!-- end row -->
 
-                    <a class="btn btn-primary mb-2" href="<?php echo base_url('guru/tambah') ?>">Tambah</a>
+                    <a class="btn btn-primary mb-2" href="<?php echo base_url('pengeluaran/tambah') ?>">Tambah</a>
+                    <a class="btn btn-success mb-2" href="<?php echo base_url('pengeluaran/setting') ?>"><i class="fas fa-cogs"></i> Pengaturan</a>
 
                     <table class="table table-striped table-bordered table-responsive-md">
                         <thead>
                             <tr>
-                                <th>Nama Lengkap</th>
-                                <th>L/P</th>
-                                <th>Alamat Lengkap</th>
-                                <th>No. Telepon</th>
+                                <th>Tanggal Pengeluaran</th>
+                                <th>Kategori Pengeluaran</th>
+                                <th>Nominal</th>
+                                <th>Keterangan</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <?php foreach ($guru as $g) { ?>
+                            <?php foreach ($pengeluaran as $p) { ?>
                             <tr>
-                                <td><?php echo $g->guru_nama ?></td>
+                                <td><?php echo $controller->tgl_indo($p->pengeluaran_tanggal) ?></td>
+                                <td><?php echo $p->kategoripengeluaran_nama ?></td>
+                                <td>Rp. <span class="nominal"><?php echo $p->pengeluaran_nominal ?></span></td>
+                                <td><?php echo $p->pengeluaran_keterangan ?></td>
                                 <td>
-                                    <?php
-                                    if ($g->guru_jk == "l") {
-                                        echo "Laki-laki";
-                                    }elseif ($g->guru_jk == "p") {
-                                        echo "Perempuan";
-                                    }
-                                    ?>
-                                </td>
-                                <td><?php echo $g->guru_alamat ?></td>
-                                <td><?php echo $g->guru_telepon ?></td>
-                                <td>
-                                    <a class="btn btn-warning" href="<?php echo base_url('guru/edit/').$g->guru_id ?>">Edit</a>
-                                    <a class="btn btn-danger" href="<?php echo base_url('guru/hapus/').$g->guru_id ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+                                    <a class="btn btn-warning" href="<?php echo base_url('pengeluaran/edit/').$p->pengeluaran_id ?>">Edit</a>
+                                    <a class="btn btn-danger" href="<?php echo base_url('pengeluaran/hapus/').$p->pengeluaran_id ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -91,6 +84,8 @@
             $('.table').DataTable( {
                 "order": []
             } );
+
+            $('.nominal').mask('000.000.000.000.000', {reverse: true});
         });
         
     </script>

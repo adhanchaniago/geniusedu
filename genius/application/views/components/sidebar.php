@@ -41,6 +41,14 @@
                     </a>
                 </li>
                 <li>
+                    <a href="<?php echo base_url('pengeluaran') ?>" class="waves-effect">
+                        <i class="fas fa-tasks"></i>
+                        <span>Pengeluaran</span>
+                    </a>
+                </li>
+
+                <li class="menu-title">LAPORAN</li>
+                <li>
                     <a href="<?php echo base_url('beranda') ?>" class="waves-effect">
                         <i class="fas fa-scroll"></i>
                         <span>Laporan</span>

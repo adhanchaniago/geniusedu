@@ -78,7 +78,7 @@ class Home extends CI_Controller {
 	{
         $data['master'] = $this->db->get('master')->result();
 
-    	$this->load->view('master',$data);
+        $this->load->view('master',$data);
     }
 
     public function master_aksi()
@@ -632,6 +632,144 @@ class Home extends CI_Controller {
     	$data['controller']=$this;
 
 		$this->load->view('pembayaran-bayar-cetak',$data);
+	}
+
+	public function pengeluaran_setting()
+	{
+        $data['kategori'] = $this->db->get('kategoripengeluaran')->result();
+
+    	$this->load->view('pengeluaran-setting',$data);
+    }
+
+    public function pengeluaran_setting_tambah()
+	{
+    	$this->load->view('pengeluaran-setting-tambah');
+    }
+
+    public function pengeluaran_setting_tambah_aksi()
+    {
+    	$nama = $this->input->post('nama');
+
+ 		$data = array(
+			'kategoripengeluaran_nama' => $nama
+		);
+
+		$this->db->insert('kategoripengeluaran',$data);
+		redirect(base_url('pengeluaran/setting'));
+    }
+
+    public function pengeluaran_setting_edit($id)
+	{
+		$where = array('kategoripengeluaran_id' => $id);
+        $data['kategori'] = $this->db->get_where('kategoripengeluaran',$where)->result();
+
+    	$this->load->view('pengeluaran-setting-edit',$data);
+    }
+
+    public function pengeluaran_setting_edit_aksi($id)
+    {
+    	$nama = $this->input->post('nama');
+
+ 		$data = array(
+			'kategoripengeluaran_nama' => $nama
+		);
+
+		$where = array(
+			'kategoripengeluaran_id' => $id
+		);
+		
+		$this->data->edit($where,$data,'kategoripengeluaran');
+		redirect(base_url('pengeluaran/setting'));
+    }
+
+    public function pengeluaran_setting_hapus($id)
+	{
+		$where = array('kategoripengeluaran_id' => $id);
+		$this->data->hapus($where,'kategoripengeluaran');
+		redirect(base_url('pengeluaran/setting'));
+	}
+
+	public function pengeluaran()
+	{
+        $this->db->order_by("pengeluaran_tanggal", "DESC");
+        $data['pengeluaran'] = $this->db->select('*')
+	    							   ->from('pengeluaran')
+	    							   ->join('kategoripengeluaran', 'pengeluaran.pengeluaran_kategoripengeluaran_id = kategoripengeluaran.kategoripengeluaran_id','left')
+	    							   ->get()
+	    							   ->result();
+
+	    $data['controller'] = $this;
+
+    	$this->load->view('pengeluaran',$data);
+    }
+
+    public function pengeluaran_tambah()
+	{
+        $data['kategori'] = $this->db->get('kategoripengeluaran')->result();
+
+    	$this->load->view('pengeluaran-tambah',$data);
+    }
+
+    public function pengeluaran_tambah_aksi()
+    {
+    	$tanggal = $this->input->post('tanggal');
+    	$kategori = $this->input->post('kategori');
+    	$nominal = $this->input->post('nominal');
+    	$keterangan = $this->input->post('keterangan');
+
+ 		$data = array(
+			'pengeluaran_tanggal' => $tanggal,
+			'pengeluaran_kategoripengeluaran_id' => $kategori,
+			'pengeluaran_nominal' => $nominal,
+			'pengeluaran_keterangan' => $keterangan
+		);
+
+		$this->db->insert('pengeluaran',$data);
+		redirect(base_url('pengeluaran'));
+    }
+
+    public function pengeluaran_edit($id)
+	{
+		$where = array('pengeluaran_id' => $id);
+        $data['pengeluaran'] = $this->db->select('*')
+	    							   ->from('pengeluaran')
+	    							   ->join('kategoripengeluaran', 'pengeluaran.pengeluaran_kategoripengeluaran_id = kategoripengeluaran.kategoripengeluaran_id','left')
+	    							   ->where($where)
+	    							   ->get()
+	    							   ->result();
+
+    	$data['kategori'] = $this->db->get('kategoripengeluaran')->result();
+
+    	$this->load->view('pengeluaran-edit',$data);
+    }
+
+    public function pengeluaran_edit_aksi($id)
+    {
+    	$tanggal = $this->input->post('tanggal');
+    	$kategori = $this->input->post('kategori');
+    	$nominal = $this->input->post('nominal');
+    	$keterangan = $this->input->post('keterangan');
+
+ 		$data = array(
+			'pengeluaran_tanggal' => $tanggal,
+			'pengeluaran_kategoripengeluaran_id' => $kategori,
+			'pengeluaran_nominal' => $nominal,
+			'pengeluaran_keterangan' => $keterangan
+		);
+
+		$where = array(
+			'pengeluaran_id' => $id
+		);
+		
+		$this->data->edit($where,$data,'pengeluaran');
+		redirect(base_url('pengeluaran'));
+    }
+
+    public function pengeluaran_hapus($id)
+	{
+		$where = array('pengeluaran_id' => $id);
+		$this->data->hapus($where,'pengeluaran');
+		redirect(base_url('pengeluaran'));
 	}
 
 }
