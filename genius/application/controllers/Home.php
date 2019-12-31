@@ -701,10 +701,12 @@ class Home extends CI_Controller {
 
 	public function pengeluaran()
 	{
-        $this->db->order_by("pengeluaran_tanggal", "DESC");
+		$where = array('status' => 2);
+        $this->db->order_by("pembayaran_tanggalbayar", "DESC");
         $data['pengeluaran'] = $this->db->select('*')
-	    							   ->from('pengeluaran')
-	    							   ->join('kategoripengeluaran', 'pengeluaran.pengeluaran_kategoripengeluaran_id = kategoripengeluaran.kategoripengeluaran_id','left')
+	    							   ->from('pembayaran')
+	    							   ->join('kategoripengeluaran', 'pembayaran.pengeluaran_kategoripengeluaran_id = kategoripengeluaran.kategoripengeluaran_id','left')
+	    							   ->where($where)
 	    							   ->get()
 	    							   ->result();
 
@@ -728,22 +730,23 @@ class Home extends CI_Controller {
     	$keterangan = $this->input->post('keterangan');
 
  		$data = array(
-			'pengeluaran_tanggal' => $tanggal,
+ 			'status' => 2,
+			'pembayaran_tanggalbayar' => $tanggal,
 			'pengeluaran_kategoripengeluaran_id' => $kategori,
 			'pengeluaran_nominal' => $nominal,
 			'pengeluaran_keterangan' => $keterangan
 		);
 
-		$this->db->insert('pengeluaran',$data);
+		$this->db->insert('pembayaran',$data);
 		redirect(base_url('pengeluaran'));
     }
 
     public function pengeluaran_edit($id)
 	{
-		$where = array('pengeluaran_id' => $id);
+		$where = array('pembayaran_id' => $id);
         $data['pengeluaran'] = $this->db->select('*')
-	    							   ->from('pengeluaran')
-	    							   ->join('kategoripengeluaran', 'pengeluaran.pengeluaran_kategoripengeluaran_id = kategoripengeluaran.kategoripengeluaran_id','left')
+	    							   ->from('pembayaran')
+	    							   ->join('kategoripengeluaran', 'pembayaran.pengeluaran_kategoripengeluaran_id = kategoripengeluaran.kategoripengeluaran_id','left')
 	    							   ->where($where)
 	    							   ->get()
 	    							   ->result();
@@ -761,24 +764,24 @@ class Home extends CI_Controller {
     	$keterangan = $this->input->post('keterangan');
 
  		$data = array(
-			'pengeluaran_tanggal' => $tanggal,
+			'pembayaran_tanggalbayar' => $tanggal,
 			'pengeluaran_kategoripengeluaran_id' => $kategori,
 			'pengeluaran_nominal' => $nominal,
 			'pengeluaran_keterangan' => $keterangan
 		);
 
 		$where = array(
-			'pengeluaran_id' => $id
+			'pembayaran_id' => $id
 		);
 		
-		$this->data->edit($where,$data,'pengeluaran');
+		$this->data->edit($where,$data,'pembayaran');
 		redirect(base_url('pengeluaran'));
     }
 
     public function pengeluaran_hapus($id)
 	{
-		$where = array('pengeluaran_id' => $id);
-		$this->data->hapus($where,'pengeluaran');
+		$where = array('pembayaran_id' => $id);
+		$this->data->hapus($where,'pembayaran');
 		redirect(base_url('pengeluaran'));
 	}
 
@@ -809,6 +812,19 @@ class Home extends CI_Controller {
 	    	$data['paketbimbel'] = $this->db->get('paketbimbel')->result();
 
 			$this->load->view('laporan-cetak-perpaket',$data);
+		}elseif ($sort == 'semua') {
+
+			$this->db->order_by("pembayaran_tanggalbayar", "ASC");
+			$data['transaksi'] = $this->db->select('*')
+		    							   ->from('pembayaran')
+		    							   ->join('kategoripengeluaran', 'kategoripengeluaran.kategoripengeluaran_id = pembayaran.pengeluaran_kategoripengeluaran_id','left')
+		    							   ->join('pesertadidik', 'pesertadidik.pesertadidik_id = pembayaran.pembayaran_pesertadidik_id','left')
+		    							   ->get()
+		    							   ->result();
+
+			$data['controller'] = $this;
+
+			$this->load->view('laporan-cetak-all',$data);
 		}
 		
     }

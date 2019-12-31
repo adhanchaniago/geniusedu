@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Des 2019 pada 12.14
+-- Waktu pembuatan: 31 Des 2019 pada 06.42
 -- Versi server: 10.4.8-MariaDB
 -- Versi PHP: 7.3.10
 
@@ -102,7 +102,8 @@ CREATE TABLE `paketbimbel` (
 
 INSERT INTO `paketbimbel` (`paketbimbel_id`, `paketbimbel_nama`, `paketbimbel_nominal`) VALUES
 (1, 'Paket Bisnis', '200000'),
-(4, 'Paket Hemat', '900000');
+(4, 'Paket Hemat', '900000'),
+(5, 'Paket Pelajar', '800000');
 
 -- --------------------------------------------------------
 
@@ -112,42 +113,31 @@ INSERT INTO `paketbimbel` (`paketbimbel_id`, `paketbimbel_nama`, `paketbimbel_no
 
 CREATE TABLE `pembayaran` (
   `pembayaran_id` int(6) NOT NULL,
-  `pembayaran_pesertadidik_id` int(6) NOT NULL,
+  `status` int(1) NOT NULL DEFAULT 1,
+  `pembayaran_pesertadidik_id` int(6) DEFAULT NULL,
   `pembayaran_tanggalbayar` date NOT NULL,
   `pembayaran_nominalbayar` varchar(20) NOT NULL,
-  `pembayaran_kwitansi` varchar(20) NOT NULL
+  `pembayaran_kwitansi` varchar(20) NOT NULL,
+  `pengeluaran_kategoripengeluaran_id` int(6) DEFAULT NULL,
+  `pengeluaran_nominal` varchar(30) NOT NULL,
+  `pengeluaran_keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `pembayaran`
 --
 
-INSERT INTO `pembayaran` (`pembayaran_id`, `pembayaran_pesertadidik_id`, `pembayaran_tanggalbayar`, `pembayaran_nominalbayar`, `pembayaran_kwitansi`) VALUES
-(5, 1, '2019-12-30', '500000', '001'),
-(17, 1, '2020-01-02', '310000', '001');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pengeluaran`
---
-
-CREATE TABLE `pengeluaran` (
-  `pengeluaran_id` int(6) NOT NULL,
-  `pengeluaran_tanggal` date NOT NULL,
-  `pengeluaran_kategoripengeluaran_id` int(6) NOT NULL,
-  `pengeluaran_nominal` varchar(30) NOT NULL,
-  `pengeluaran_keterangan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `pengeluaran`
---
-
-INSERT INTO `pengeluaran` (`pengeluaran_id`, `pengeluaran_tanggal`, `pengeluaran_kategoripengeluaran_id`, `pengeluaran_nominal`, `pengeluaran_keterangan`) VALUES
-(2, '2019-12-31', 3, '700000', 'Pengeluaran Konsumsi'),
-(3, '2019-12-29', 5, '1500000', 'Pengeluaran Gaji Guru'),
-(4, '2020-01-02', 1, '90000', 'Pembelian perlengkapan ATK');
+INSERT INTO `pembayaran` (`pembayaran_id`, `status`, `pembayaran_pesertadidik_id`, `pembayaran_tanggalbayar`, `pembayaran_nominalbayar`, `pembayaran_kwitansi`, `pengeluaran_kategoripengeluaran_id`, `pengeluaran_nominal`, `pengeluaran_keterangan`) VALUES
+(5, 1, 1, '2019-12-30', '500000', '001', NULL, '', ''),
+(18, 1, 2, '2019-12-16', '50000', '982', NULL, '', ''),
+(19, 1, 2, '2019-12-18', '140000', '008', NULL, '', ''),
+(20, 1, 1, '2019-12-24', '200000', '998', NULL, '', ''),
+(21, 1, 3, '2019-12-17', '25000', '76', NULL, '', ''),
+(22, 1, 3, '2019-12-24', '75000', '0082', NULL, '', ''),
+(26, 1, 3, '2019-12-25', '15000', '00892', NULL, '', ''),
+(28, 2, NULL, '2019-12-29', '', '', 1, '100000', 'pembelian ATK'),
+(29, 2, NULL, '2019-12-30', '', '', 3, '900000', 'pembelian konsumsi'),
+(30, 2, NULL, '2019-12-31', '', '', 5, '2000000', 'pemberian gaji');
 
 -- --------------------------------------------------------
 
@@ -183,7 +173,8 @@ CREATE TABLE `pesertadidik` (
 
 INSERT INTO `pesertadidik` (`pesertadidik_id`, `pesertadidik_nama`, `pesertadidik_noinduk`, `pesertadidik_jk`, `pesertadidik_tempatlahir`, `pesertadidik_tanggallahir`, `pesertadidik_agama`, `pesertadidik_alamat`, `pesertadidik_telepon`, `pesertadidik_ayah`, `pesertadidik_ibu`, `pesertadidik_pekerjaanayah`, `pesertadidik_pekerjaanibu`, `pesertadidik_teleponortu`, `pesertadidik_paketbimbel_id`, `pesertadidik_diskonpersen`, `pesertadidik_diskonnominal`, `pesertadidik_keterangandiskon`, `pesertadidik_batasbayar`) VALUES
 (1, 'NURIS SETIA BUDI', '0912039120', 'l', 'Banyuwangi', '2019-12-03', 'Islam', 'Tegaldlimo-banyuwangi', '085204569506', 'Anton', 'Nur', 'wiraswasta', 'ibu rumah tanggal', '0852045695062', 4, '10', '', '', '2020-01-04'),
-(2, 'ANDI SETIAWAN', '00023', 'l', 'BANYUWANGI', '2019-12-10', 'Islam', 'TEGALDLIMO', '', 'PAIJO', 'PAINEM', '', '', '', 1, '', '', '', '2019-12-30');
+(2, 'ANDI SETIAWAN', '00023', 'l', 'BANYUWANGI', '2019-12-10', 'Islam', 'TEGALDLIMO', '', 'PAIJO', 'PAINEM', '', '', '', 1, '5', '', '', '2019-12-30'),
+(3, 'NAVA', '92839', 'p', 'BANYUWANGI', '2019-11-26', 'Islam', 'TEGALDLIMO', '', 'SUKIMAN', 'SURATEMI', '', '', '', 1, '', '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -242,12 +233,6 @@ ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`pembayaran_id`);
 
 --
--- Indeks untuk tabel `pengeluaran`
---
-ALTER TABLE `pengeluaran`
-  ADD PRIMARY KEY (`pengeluaran_id`);
-
---
 -- Indeks untuk tabel `pesertadidik`
 --
 ALTER TABLE `pesertadidik`
@@ -285,31 +270,25 @@ ALTER TABLE `master`
 -- AUTO_INCREMENT untuk tabel `paketbimbel`
 --
 ALTER TABLE `paketbimbel`
-  MODIFY `paketbimbel_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `paketbimbel_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `pembayaran_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT untuk tabel `pengeluaran`
---
-ALTER TABLE `pengeluaran`
-  MODIFY `pengeluaran_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pembayaran_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT untuk tabel `pesertadidik`
 --
 ALTER TABLE `pesertadidik`
-  MODIFY `pesertadidik_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pesertadidik_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

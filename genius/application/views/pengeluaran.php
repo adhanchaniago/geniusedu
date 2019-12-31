@@ -49,13 +49,13 @@
                         <tbody>
                             <?php foreach ($pengeluaran as $p) { ?>
                             <tr>
-                                <td><?php echo $controller->tgl_indo($p->pengeluaran_tanggal) ?></td>
+                                <td><?php echo $controller->tgl_indo($p->pembayaran_tanggalbayar) ?></td>
                                 <td><?php echo $p->kategoripengeluaran_nama ?></td>
                                 <td>Rp. <span class="nominal"><?php echo $p->pengeluaran_nominal ?></span></td>
                                 <td><?php echo $p->pengeluaran_keterangan ?></td>
                                 <td>
-                                    <a class="btn btn-warning" href="<?php echo base_url('pengeluaran/edit/').$p->pengeluaran_id ?>">Edit</a>
-                                    <a class="btn btn-danger" href="<?php echo base_url('pengeluaran/hapus/').$p->pengeluaran_id ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+                                    <a class="btn btn-warning" href="<?php echo base_url('pengeluaran/edit/').$p->pembayaran_id ?>">Edit</a>
+                                    <a class="btn btn-danger" href="<?php echo base_url('pengeluaran/hapus/').$p->pembayaran_id ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
                                 </td>
                             </tr>
                             <?php } ?>

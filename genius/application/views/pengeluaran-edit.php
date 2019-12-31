@@ -33,9 +33,9 @@
                     <!-- end row -->
 
                     <?php foreach ($pengeluaran as $p) { ?>
-                    <form action="<?php echo base_url('pengeluaran/edit/aksi/').$p->pengeluaran_id ?>" method="post">
+                    <form action="<?php echo base_url('pengeluaran/edit/aksi/').$p->pembayaran_id ?>" method="post">
                         Tanggal Pengeluaran:
-                        <input class="form-control mb-3 tanggal" type="text" name="tanggal" value="<?php echo $p->pengeluaran_tanggal ?>" required>
+                        <input class="form-control mb-3 tanggal" type="text" name="tanggal" value="<?php echo $p->pembayaran_tanggalbayar ?>" required>
 
                         Kategori Pengeluaran:
                         <select class="form-control mb-3" name="kategori" required>
